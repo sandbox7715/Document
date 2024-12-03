@@ -1,0 +1,15 @@
+name: Security Assessment Review
+on:
+push:
+branches:
+-  main
+jobs:
+trivy-scan
+name:  trivy-scan
+runs-on: ubuntu-latest
+steps:
+-  uses: actions/checkout@v2
+-  name: Run Trivy Vulnerability scan
+   uses: aquasecurity/trivy-action@0.28.0
+   format: 'table'
+   severity: 'CRITICAL,HIGH'

@@ -1,13 +1,22 @@
-name: Security Assessment Review
+name: security
 on:
-push:
-branches:
--  main
-jobs: trivyscan
+ push:
+   branches:
+   - main
+  pull_request:
+jobs:
+   security
+name: security
 runs-on: ubuntu-latest
 steps:
--  uses: actions/checkout@v2
--  name: Run Trivy Vulnerability scan
-   uses: aquasecurity/trivy-action@0.28.0
+- name: checkout code
+  uses: action/checkout@v2
+
+- name: Run Trivy vulnerability scan in fs mode
+  uses: aquasecurity/trivy-action@main
+  with:
+   scan-type: 'fs'
+   scan-ref: '.'
+   trivy-config: trivy.yaml
    format: 'table'
    severity: 'CRITICAL,HIGH'

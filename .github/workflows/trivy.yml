@@ -5,7 +5,7 @@ branches:
 -  main
 jobs:
 trivy-scan
-name:  trivy-scan
+name: trivy-scan
 runs-on: ubuntu-latest
 steps:
 -  uses: actions/checkout@v2
